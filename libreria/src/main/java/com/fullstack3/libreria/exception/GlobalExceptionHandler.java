@@ -41,18 +41,18 @@ public class GlobalExceptionHandler {
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-        @ExceptionHandler(Exception.class)
-        public ResponseEntity<Object> handleGeneralException(Exception ex) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("timestamp", LocalDateTime.now());
-            response.put("message", "Error interno en el Sistema de Gestión de los Libros");
-            response.put("details", "Contacte al soporte técnico si el problema persiste.");
-            response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-        
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleGeneralException(Exception ex) {
+        ex.printStackTrace();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("message", "Error interno en el Sistema de Gestión de los Libros");
+        response.put("details", ex.getMessage()); 
+        response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-
 
 
 

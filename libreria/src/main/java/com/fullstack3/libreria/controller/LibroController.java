@@ -9,7 +9,7 @@ import java.util.List;
 import com.fullstack3.libreria.model.Libro;
 import com.fullstack3.libreria.service.LibroService;
 
-
+@RestController 
 @RequestMapping("/libros")
 public class LibroController {
 
