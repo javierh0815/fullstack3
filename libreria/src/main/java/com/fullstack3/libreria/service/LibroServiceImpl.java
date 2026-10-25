@@ -2,7 +2,7 @@ package com.fullstack3.libreria.service;
 
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.fullstack3.libreria.model.Libro;
@@ -11,8 +11,10 @@ import com.fullstack3.libreria.repository.LibroRepository;
 @Service
 public class LibroServiceImpl implements LibroService {
 
-    @Autowired
-    private LibroRepository libroRepository;
+    private final LibroRepository libroRepository;
+    public LibroServiceImpl(LibroRepository libroRepository) {
+        this.libroRepository = libroRepository;
+    }
 
     @Override
     public List<Libro> getAllLibros() {
