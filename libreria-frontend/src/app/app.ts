@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { BookListComponent } from './components/book-list/book-list';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  standalone: true,
+  imports: [BookListComponent],
+  templateUrl: './app.html', 
+  styleUrl: './app.css'    
 })
-export class App {
-  protected readonly title = signal('libreria-frontend');
+export class AppComponent {
+  title = 'libreria-frontend';
 }

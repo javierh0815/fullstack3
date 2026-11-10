@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <h2>Gestión de Libros de Biblioteca</h2>
+
+
+  <div class="card my-4 p-3">
+    <h4>{{ isEditing ? 'Editar Libro' : 'Agregar Nuevo Libro' }}</h4>
+    <form (ngSubmit)="saveBook()">
+      <div class="mb-2">
+        <label>Título:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentBook.titulo" name="titulo" required />
+      </div>
+      <div class="mb-2">
+        <label>Autor:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentBook.autor" name="autor" required />
+      </div>
+      <div class="mb-2">
+        <label>Año de Publicación:</label>
+        <input type="number" class="form-control" [(ngModel)]="currentBook.anioPublicacion" name="anioPublicacion" required />
+      </div>
+      <div class="mb-2">
+        <label>Género:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentBook.genero" name="genero" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary me-2">
+        {{ isEditing ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()" *ngIf="isEditing">
+        Cancelar
+      </button>
+    </form>
+  </div>
+
+
+  <h4>Lista de Libros</h4>
+  <table class="table table-bordered table-striped mt-2">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Año</th>
+        <th>Género</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.id }}</td>
+        <td>{{ book.titulo }}</td>
+        <td>{{ book.autor }}</td>
+        <td>{{ book.anioPublicacion }}</td>
+        <td>{{ book.genero }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" (click)="editBook(book)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteBook(book.id)">Eliminar</button>
+        </td>
+      </tr>
+      <tr *ngIf="books.length === 0">
+        <td colspan="6" class="text-center">No hay libros registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
